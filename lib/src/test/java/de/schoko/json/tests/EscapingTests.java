@@ -1,22 +1,21 @@
 package de.schoko.json.tests;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
 import de.schoko.json.Json;
 import de.schoko.json.JsonReader;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class EscapingTests {
 	@Test
-	void doesEscapedStringConvertToString() {
+	public void doesEscapedStringConvertToString() {
 		assertEquals(
 				"{\"stringContainingEscapeCharacter\": \"\\n\"}",
 				Json.of(Json.valueOf("stringContainingEscapeCharacter", "\n")).toString());
 	}
 	
 	@Test
-	void doEscapedBackslashesEncodeProperly() {
+	public void doEscapedBackslashesEncodeProperly() {
 		assertEquals(
 				"\"\\\\ \"", 
 				Json.valueOf(null, "\\ ").toString());
@@ -29,7 +28,7 @@ public class EscapingTests {
 	}
 	
 	@Test
-	void doEscapedBackslashesDecodeProperly() {
+	public void doEscapedBackslashesDecodeProperly() {
 		JsonReader reader = new JsonReader();
 		assertEquals(
 				Json.of(Json.valueOf("value", "\\ ")), // value: \, encoded: \\

@@ -2,12 +2,11 @@ package de.schoko.json.tests;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.jupiter.api.Test;
-
 import de.schoko.json.Json;
 import de.schoko.json.JsonObject;
+import org.junit.Test;
 
-class MergeTest {
+public class MergeTest {
 	
 	public void assertEqualsMerged(JsonObject jsonA, JsonObject jsonB, JsonObject result) {
 		JsonObject merged = jsonA.merge(jsonB);
@@ -15,7 +14,7 @@ class MergeTest {
 	}
 
 	@Test
-	void oneValueMergeTest() {
+	public void oneValueMergeTest() {
 		assertEqualsMerged(
 				Json.of(
 						),
@@ -29,7 +28,7 @@ class MergeTest {
 	}
 
 	@Test
-	void oneValueUnchangedMergeTest() {
+	public void oneValueUnchangedMergeTest() {
 		assertEqualsMerged(
 				Json.of(
 						Json.valueOf("foo", "bar")
@@ -43,7 +42,7 @@ class MergeTest {
 	}
 
 	@Test
-	void oneValueChangedMergeTest() {
+	public void oneValueChangedMergeTest() {
 		assertEqualsMerged(
 				Json.of(
 						Json.valueOf("foo", "bar")
@@ -58,7 +57,7 @@ class MergeTest {
 	}
 
 	@Test
-	void oneValueAddedMergeTest() {
+	public void oneValueAddedMergeTest() {
 		assertEqualsMerged(
 				Json.of(
 						Json.valueOf("foo", "bar")
@@ -74,7 +73,7 @@ class MergeTest {
 	}
 	
 	@Test
-	void valueInListOverwrittenMergeTest() {
+	public void valueInListOverwrittenMergeTest() {
 		assertEqualsMerged(
 				Json.of(
 						Json.listOf("foo", 
@@ -95,7 +94,7 @@ class MergeTest {
 	}
 	
 	@Test
-	void valueInListAppendedMergeTest() {
+	public void valueInListAppendedMergeTest() {
 		assertEqualsMerged(
 				Json.of(
 						Json.listOf("foo", 

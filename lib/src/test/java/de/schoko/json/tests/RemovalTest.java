@@ -1,16 +1,15 @@
 package de.schoko.json.tests;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.jupiter.api.Test;
-
 import de.schoko.json.Json;
 import de.schoko.json.JsonList;
 import de.schoko.json.JsonObject;
+import org.junit.Test;
 
-class RemovalTest {
+import static org.junit.Assert.assertEquals;
+
+public class RemovalTest {
 	@Test
-	void subtractionOfOneEqualValue() {
+	public void subtractionOfOneEqualValue() {
 		JsonObject jsonA = Json.of(
 				Json.valueOf("foo", "bar")
 				);
@@ -18,11 +17,11 @@ class RemovalTest {
 				Json.valueOf("foo", "bar")
 				);
 		JsonObject result = jsonA.remove(jsonB);
-		assertEquals(result, Json.of());
+		assertEquals(Json.of(), result);
 	}
 
 	@Test
-	void subtractionOfOneUnequalValue() {
+	public void subtractionOfOneUnequalValue() {
 		JsonObject jsonA = Json.of(
 				Json.valueOf("foo", "bar")
 				);
@@ -30,13 +29,12 @@ class RemovalTest {
 				Json.valueOf("foo", "baz")
 				);
 		JsonObject result = jsonA.remove(jsonB);
-		assertEquals(result, Json.of(
-				Json.valueOf("foo", "bar")
-				));
+		assertEquals(Json.of(Json.valueOf("foo", "bar")),
+			result);
 	}
 	
 	@Test
-	void succesfulSubtractionOfOneFromTwoLeavesOneUnaffected() {
+	public void succesfulSubtractionOfOneFromTwoLeavesOneUnaffected() {
 		JsonObject jsonA = Json.of(
 				Json.valueOf("foo", "bar"),
 				Json.valueOf("qux", "quux")
@@ -45,13 +43,13 @@ class RemovalTest {
 				Json.valueOf("foo", "bar")
 				);
 		JsonObject result = jsonA.remove(jsonB);
-		assertEquals(result, Json.of(
+		assertEquals(Json.of(
 				Json.valueOf("qux", "quux")
-				));
+				), result);
 	}
 
 	@Test
-	void succesfulSubtractionOfTwoFromOne() {
+	public void succesfulSubtractionOfTwoFromOne() {
 		JsonObject jsonA = Json.of(
 				Json.valueOf("foo", "bar")
 				);
@@ -60,12 +58,12 @@ class RemovalTest {
 				Json.valueOf("qux", "quux")
 				);
 		JsonObject result = jsonA.remove(jsonB);
-		assertEquals(result, Json.of(
-				));
+		assertEquals(Json.of(
+				), result);
 	}
 
 	@Test
-	void unequalSubtractionOfTwoFromOne() {
+	public void unequalSubtractionOfTwoFromOne() {
 		JsonObject jsonA = Json.of(
 				Json.valueOf("foo", "baz")
 				);
@@ -74,13 +72,13 @@ class RemovalTest {
 				Json.valueOf("qux", "quux")
 				);
 		JsonObject result = jsonA.remove(jsonB);
-		assertEquals(result, Json.of(
+		assertEquals(Json.of(
 				Json.valueOf("foo", "baz")
-				));
+				), result);
 	}
 	
 	@Test
-	void depthRemoveEqualsTest() {
+	public void depthRemoveEqualsTest() {
 		JsonObject jsonA = Json.of(
 				Json.valueOf("foo", "bar"),
 				Json.of("baz", 
@@ -94,11 +92,11 @@ class RemovalTest {
 						)
 				);
 		JsonObject result = jsonA.remove(jsonB);
-		assertEquals(result, Json.of());
+		assertEquals(Json.of(), result);
 	}
 	
 	@Test
-	void depthRemoveButOneOfTheValuesInDepthIsUnequalTest() {
+	public void depthRemoveButOneOfTheValuesInDepthIsUnequalTest() {
 		JsonObject jsonA = Json.of(
 				Json.valueOf("foo", "bar"),
 				Json.of("baz", 
@@ -112,15 +110,15 @@ class RemovalTest {
 						)
 				);
 		JsonObject result = jsonA.remove(jsonB);
-		assertEquals(result, Json.of(
+		assertEquals(Json.of(
 				Json.of("baz", 
 						Json.valueOf("qux", "quax")
 						)
-				));
+				), result);
 	}
 	
 	@Test
-	void depthRemovalButOneOfTheValuesIsNotAnObject() {
+	public void depthRemovalButOneOfTheValuesIsNotAnObject() {
 		JsonObject jsonA = Json.of(
 				Json.valueOf("foo", "bar"),
 				Json.of("baz", 
@@ -132,15 +130,15 @@ class RemovalTest {
 				Json.valueOf("baz", "qux")
 				);
 		JsonObject result = jsonA.remove(jsonB);
-		assertEquals(result, Json.of(
+		assertEquals(Json.of(
 				Json.of("baz", 
 						Json.valueOf("qux", "quax")
 						)
-				));
+				), result);
 	}
 	
 	@Test
-	void cleanRemovalOfListTest() {
+	public void cleanRemovalOfListTest() {
 		JsonObject jsonA = Json.of(
 				Json.listOf("foo",
 						Json.valueOf("bar", "baz")
@@ -152,11 +150,11 @@ class RemovalTest {
 						)
 				);
 		JsonObject result = jsonA.remove(jsonB);
-		assertEquals(result, Json.of());
+		assertEquals(Json.of(), result);
 	}
 	
 	@Test
-	void noRemovalOfListBecauseTheValuesAreDifferentTest() {
+	public void noRemovalOfListBecauseTheValuesAreDifferentTest() {
 		JsonObject jsonA = Json.of(
 				Json.listOf("foo",
 						Json.valueOf("bar", "baz")
@@ -166,15 +164,15 @@ class RemovalTest {
 				new JsonList("foo")
 				);
 		JsonObject result = jsonA.remove(jsonB);
-		assertEquals(result, Json.of(
+		assertEquals(Json.of(
 				Json.listOf("foo",
 						Json.valueOf("bar", "baz")
 						)
-				));
+				), result);
 	}
 	
 	@Test
-	void noRemovalOfListBecauseThereAreMoreValuesTest() {
+	public void noRemovalOfListBecauseThereAreMoreValuesTest() {
 		JsonObject jsonA = Json.of(
 				Json.listOf("foo",
 						Json.valueOf("bar", "baz"),
@@ -188,11 +186,11 @@ class RemovalTest {
 						)
 				);
 		JsonObject result = jsonA.remove(jsonB);
-		assertEquals(result, jsonA);
+		assertEquals(jsonA, result);
 	}
 	
 	@Test
-	void noRemovalOfListBecauseTooManyValuesWereRemovedTest() {
+	public void noRemovalOfListBecauseTooManyValuesWereRemovedTest() {
 		JsonObject jsonA = Json.of(
 				Json.listOf("foo",
 						Json.valueOf("bar", "baz")
@@ -206,11 +204,11 @@ class RemovalTest {
 						)
 				);
 		JsonObject result = jsonA.remove(jsonB);
-		assertEquals(result, jsonA);
+		assertEquals(jsonA, result);
 	}
 	
 	@Test
-	void objectListRemovedCleanlyTest() {
+	public void objectListRemovedCleanlyTest() {
 		JsonObject jsonA = Json.of(
 				Json.listOf("foo",
 						Json.of(
@@ -236,6 +234,6 @@ class RemovalTest {
 						)
 				);
 		JsonObject result = jsonA.remove(jsonB);
-		assertEquals(result, Json.of());
+		assertEquals(Json.of(), result);
 	}
 }

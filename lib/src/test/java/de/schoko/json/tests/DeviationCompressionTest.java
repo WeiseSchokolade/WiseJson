@@ -2,12 +2,11 @@ package de.schoko.json.tests;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.jupiter.api.Test;
-
 import de.schoko.json.Json;
 import de.schoko.json.JsonObject;
+import org.junit.Test;
 
-class DeviationCompressionTest {
+public class DeviationCompressionTest {
 	
 	public void assertEqualsCompressed(JsonObject json, JsonObject standard) {
 		JsonObject compressed = json.remove(standard);
@@ -16,7 +15,7 @@ class DeviationCompressionTest {
 	}
 
 	@Test
-	void oneValueUnequalsMergeTest() {
+	public void oneValueUnequalsMergeTest() {
 		assertEqualsCompressed(
 				Json.of(
 						Json.valueOf("name", "foo")
@@ -28,7 +27,7 @@ class DeviationCompressionTest {
 	}
 
 	@Test
-	void oneValueEqualsMergeTest() {
+	public void oneValueEqualsMergeTest() {
 		assertEqualsCompressed(
 				Json.of(
 						Json.valueOf("name", "foo")
@@ -40,7 +39,7 @@ class DeviationCompressionTest {
 	}
 
 	@Test
-	void multipleValueEqualsMergeTest() {
+	public void multipleValueEqualsMergeTest() {
 		assertEqualsCompressed(
 				Json.of(
 						Json.valueOf("name", "foo"),

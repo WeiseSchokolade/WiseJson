@@ -29,7 +29,6 @@ replay_pid*
 
 # Ignore idea
 .idea
-lib
 
 # Ignore Gradle project-specific cache directory
 .gradle
