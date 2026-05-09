@@ -38,8 +38,8 @@ wrapper {
 afterEvaluate {
     publishing {
         publications {
-            release(MavenPublication) {
-                from components.findByName("release")
+            maven(MavenPublication) {
+                from components.java
             }
         }
     }
