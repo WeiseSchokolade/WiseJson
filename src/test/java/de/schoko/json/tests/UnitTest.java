@@ -3,9 +3,10 @@ package de.schoko.json.tests;
 import de.schoko.json.Json;
 import de.schoko.json.JsonObject;
 import de.schoko.json.JsonReader;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class UnitTest {
 	@Test

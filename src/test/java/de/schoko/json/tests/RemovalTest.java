@@ -3,9 +3,9 @@ package de.schoko.json.tests;
 import de.schoko.json.Json;
 import de.schoko.json.JsonList;
 import de.schoko.json.JsonObject;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RemovalTest {
 	@Test
