@@ -34,3 +34,13 @@ wrapper {
     gradleVersion = "9.3.0"
     distributionType = Wrapper.DistributionType.ALL
 }
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.findByName("release")
+            }
+        }
+    }
+}
